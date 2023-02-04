@@ -3,4 +3,4 @@ author: bernardMC
 main: ar.com.caputo.lptags.LuckPermTags
 version: 0.1
 api-version: 1.19
-depends: [LuckPerms]
+depend: [LuckPerms]
