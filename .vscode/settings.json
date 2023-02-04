@@ -1,0 +1,15 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/STORAGE/Projects/_dependencies/mc/**/*.jar"
+        ],
+        "exclude": [
+            "/STORAGE/Projects/_dependencies/mc/Vault.jar",
+            "/STORAGE/Projects/_dependencies/mc/spigot-api-1.19.1-R0.1-SNAPSHOT.jar"
+        ]
+    },
+    "java.dependency.packagePresentation": "hierarchical"
+}
