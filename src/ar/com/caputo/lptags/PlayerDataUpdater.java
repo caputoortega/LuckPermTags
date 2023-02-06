@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 public class PlayerDataUpdater {
     
     private static String getFullProfilePrefix(UUID uuid) {
-        return LuckPermTags.colorise(
+        return LuckPermsTags.colorise(
                 ShortLPCall.getPlayerGroupPrefix(uuid) +
                 ShortLPCall.getPlayerGroupUsernameColour(uuid));
     }

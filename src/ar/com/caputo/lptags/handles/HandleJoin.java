@@ -5,12 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import ar.com.caputo.lptags.LuckPermTags;
+import ar.com.caputo.lptags.LuckPermsTags;
 import ar.com.caputo.lptags.PlayerDataUpdater;
 
 public class HandleJoin extends Handler {
 
-    public HandleJoin(LuckPermTags lpt) {
+    public HandleJoin(LuckPermsTags lpt) {
         super(lpt);
     }
     
@@ -19,7 +19,7 @@ public class HandleJoin extends Handler {
 
         Player player = evt.getPlayer();
         
-        player.setPlayerListHeader(LuckPermTags.colorise("\n&fWelcome to &a&lA Secret Project\n"));
+        player.setPlayerListHeader(LuckPermsTags.colorise("\n&fWelcome to &a&lA Secret Project\n"));
         PlayerDataUpdater.updatePrefix(player);
 
     }

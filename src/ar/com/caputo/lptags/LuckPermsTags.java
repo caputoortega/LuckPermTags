@@ -13,7 +13,7 @@ import ar.com.caputo.lptags.handles.HandleJoin;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.event.EventBus;
 
-public class LuckPermTags extends JavaPlugin {
+public class LuckPermsTags extends JavaPlugin {
     
     /**
      * LuckPerm's Event Bus

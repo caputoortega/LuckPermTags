@@ -2,13 +2,13 @@ package ar.com.caputo.lptags.handles;
 
 import org.bukkit.event.Listener;
 
-import ar.com.caputo.lptags.LuckPermTags;
+import ar.com.caputo.lptags.LuckPermsTags;
 
 public class Handler implements Listener {
 
-    protected LuckPermTags lpt;
+    protected LuckPermsTags lpt;
 
-    protected Handler(LuckPermTags lpt) {
+    protected Handler(LuckPermsTags lpt) {
         this.lpt = lpt;
     }
     

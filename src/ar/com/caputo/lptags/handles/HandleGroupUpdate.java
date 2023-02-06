@@ -1,7 +1,7 @@
 package ar.com.caputo.lptags.handles;
 
 import org.bukkit.Bukkit;
-import ar.com.caputo.lptags.LuckPermTags;
+import ar.com.caputo.lptags.LuckPermsTags;
 import ar.com.caputo.lptags.PlayerDataUpdater;
 import net.luckperms.api.event.group.GroupDataRecalculateEvent;
 import net.luckperms.api.event.user.track.UserTrackEvent;
@@ -14,7 +14,7 @@ public class HandleGroupUpdate extends Handler {
      * and <code>GroupDataRecalculateEvent</code> 
      * @param lpt
      */
-    public HandleGroupUpdate(LuckPermTags lpt) {
+    public HandleGroupUpdate(LuckPermsTags lpt) {
         super(lpt);
 
         lpt.getLPEventBus().subscribe(lpt, UserTrackEvent.class, this::userTrackUpdate);
