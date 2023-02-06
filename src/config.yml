@@ -1,0 +1,10 @@
+tablist-header:
+  - "\n"
+  - Welcome to &a&lMy Server!
+  - "\n"
+
+tablist-footer:
+  - "\n"
+  - "Visit us on &emyserver.com"
+  - "\n"
+ 

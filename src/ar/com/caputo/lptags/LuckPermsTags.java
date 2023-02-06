@@ -14,6 +14,22 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.event.EventBus;
 
 public class LuckPermsTags extends JavaPlugin {
+
+    public static enum ConfigurationNode {
+        TABLIST_HEADER("tablist-header"),
+        TABLIST_FOOTER("tablist-footer");
+
+        String name;
+
+        ConfigurationNode(String name) {
+            this.name = name;
+        }
+
+        public String get() {
+            return this.name;
+        }
+
+    }
     
     /**
      * LuckPerm's Event Bus
@@ -40,6 +56,7 @@ public class LuckPermsTags extends JavaPlugin {
             eventBus = LuckPermsProvider.get().getEventBus();
         }
 
+        this.saveDefaultConfig();
         initHandlers();
 
     }

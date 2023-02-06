@@ -1,6 +1,6 @@
 name: LPT
 author: bernardMC
 main: ar.com.caputo.lptags.LuckPermsTags
-version: 0.1
+version: 0.2
 api-version: 1.19
 depend: [LuckPerms]
