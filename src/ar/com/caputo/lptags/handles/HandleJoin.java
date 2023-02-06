@@ -8,8 +8,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import ar.com.caputo.lptags.LuckPermsTags;
 import ar.com.caputo.lptags.PlayerDataUpdater;
 
-import static ar.com.caputo.lptags.LuckPermsTags.ConfigurationNode;
-
 public class HandleJoin extends Handler {
 
     public HandleJoin(LuckPermsTags lpt) {
@@ -24,20 +22,9 @@ public class HandleJoin extends Handler {
     public void join(PlayerJoinEvent evt) {
 
         Player player = evt.getPlayer();
-        
-        StringBuilder tablistHeader = new StringBuilder();
-        lpt.getConfig().getStringList(ConfigurationNode.TABLIST_HEADER.get()).forEach(line -> {
-            tablistHeader.append(line);
-        });
 
-        StringBuilder tablistFooter = new StringBuilder();
-        lpt.getConfig().getStringList(ConfigurationNode.TABLIST_FOOTER.get()).forEach(line -> {
-            tablistFooter.append(line);
-        });
-
-        player.setPlayerListHeader(LuckPermsTags.colorise(tablistHeader.toString()));
-        player.setPlayerListFooter(LuckPermsTags.colorise(tablistFooter.toString()));
-
+        player.setPlayerListHeader(lpt.getTablistHeader());
+        player.setPlayerListFooter(lpt.getTablistFooter());
         PlayerDataUpdater.updatePrefix(player);
 
     }

@@ -1,5 +1,6 @@
 package ar.com.caputo.lptags;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +15,9 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.event.EventBus;
 
 public class LuckPermsTags extends JavaPlugin {
+
+    private String tablistHeader;
+    private String tablistFooter;
 
     public static enum ConfigurationNode {
         TABLIST_HEADER("tablist-header"),
@@ -58,7 +62,49 @@ public class LuckPermsTags extends JavaPlugin {
 
         this.saveDefaultConfig();
         initHandlers();
+        initTablistDetails();
 
+    }
+
+    /**
+     * Loads tablist's header and footer details
+     * from configuration file
+     */
+    private void initTablistDetails() {
+
+        StringBuilder tablistHeader = new StringBuilder();
+        StringBuilder tablistFooter = new StringBuilder();
+        List<String> tablistHeaderList = getConfig().getStringList(ConfigurationNode.TABLIST_HEADER.get());
+        List<String> tablistFooterList = getConfig().getStringList(ConfigurationNode.TABLIST_FOOTER.get());
+        
+        if(tablistHeaderList != null && !tablistHeader.isEmpty()) 
+            tablistHeaderList.forEach(line -> {
+                tablistHeader.append(line);
+            });
+
+        this.tablistHeader = colorise(tablistHeader.toString());
+
+        if(tablistFooterList != null && !tablistHeader.isEmpty())
+            tablistFooterList.forEach(line -> {
+                tablistFooter.append(line);
+            });
+
+        this.tablistFooter = colorise(tablistFooter.toString());
+
+    }
+
+    /**
+     * @return colorised tablist header
+     */
+    public String getTablistHeader() {
+        return this.tablistHeader;
+    }
+
+    /**
+     * @return colorised tablist footer
+     */
+    public String getTablistFooter() {
+        return this.tablistFooter;
     }
 
     /**
