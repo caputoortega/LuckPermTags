@@ -1,6 +1,9 @@
 name: LPT
+description: |
+  Simple plugin to customise tablist and
+  show players' prefixes
 author: bernardMC
 main: ar.com.caputo.lptags.LuckPermsTags
-version: 0.2
+version: 1.0
 api-version: 1.19
 depend: [LuckPerms]
