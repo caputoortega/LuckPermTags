@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
+    "java.project.exportJar.targetPath": "${workspaceFolder}/LPT.jar",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "/STORAGE/Projects/_dependencies/mc/spigot-api-1.19.3-R0.1-SNAPSHOT.jar",
