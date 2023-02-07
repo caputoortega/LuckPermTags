@@ -1,13 +1,19 @@
 package ar.com.caputo.lptags;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import ar.com.caputo.lptags.handles.HandleGroupUpdate;
 import ar.com.caputo.lptags.handles.HandleJoin;
@@ -15,6 +21,8 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.event.EventBus;
 
 public class LuckPermsTags extends JavaPlugin {
+
+    private static final Set<Team> rankTeams = new HashSet<Team>();
 
     private String tablistHeader;
     private String tablistFooter;
@@ -61,9 +69,43 @@ public class LuckPermsTags extends JavaPlugin {
         }
 
         this.saveDefaultConfig();
+        initTeams();
         initHandlers();
         initTablistDetails();
 
+    }
+
+    private void initTeams() {
+
+        Scoreboard serverScoreboard = getServer().getScoreboardManager().getMainScoreboard();
+
+        Set<String> existingTeamNames = serverScoreboard.getTeams().stream().map(team -> team.getName()).collect(Collectors.toSet());
+
+        LuckPermsProvider.get().getGroupManager().getLoadedGroups().forEach(group -> {
+
+            Team groupTeam = null;
+
+            if(!existingTeamNames.contains(group.getName())) {
+
+                groupTeam = serverScoreboard.registerNewTeam(group.getName());
+                String groupPrefix = group.getCachedData().getMetaData().getPrefix();
+                if(groupPrefix != null)  
+                    groupTeam.setPrefix(colorise(groupPrefix));
+            } else {
+
+                groupTeam = serverScoreboard.getTeam(group.getName());
+
+            }
+
+            rankTeams.add(groupTeam);
+
+        });
+
+
+    }
+
+    public static Team getTeam(String name) {
+        return rankTeams.stream().filter(team -> team.getName().equals(name)).findFirst().orElse(null);
     }
 
     /**
@@ -90,6 +132,7 @@ public class LuckPermsTags extends JavaPlugin {
             });
 
         this.tablistFooter = colorise(tablistFooter.toString());
+
 
     }
 

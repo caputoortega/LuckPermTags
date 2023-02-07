@@ -27,5 +27,9 @@ public class ShortLPCall {
         String usernameColour = LuckPermsProvider.get().getUserManager().getUser(uuid).getCachedData().getMetaData().getMetaValue("username-color");
         return usernameColour != null ? usernameColour : "";
     } 
+
+    public static String getPlayerMainGroup(UUID uuid) {
+        return LuckPermsProvider.get().getUserManager().getUser(uuid).getPrimaryGroup();
+    }
     
 }

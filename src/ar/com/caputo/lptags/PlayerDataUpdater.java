@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 public class PlayerDataUpdater {
     
@@ -24,10 +25,14 @@ public class PlayerDataUpdater {
      * @param player
      */
     public static void updatePrefix(Player player) {
-        player.setPlayerListName(
-                getFullProfilePrefix(player.getUniqueId()) +            
-                player.getName()
-               );
+
+        if(player != null && player.isOnline()) {
+            updateNametag(player); 
+            player.setPlayerListName(
+                    getFullProfilePrefix(player.getUniqueId()) +            
+                    player.getName()
+            );
+        }
     }
 
     /**
@@ -38,11 +43,25 @@ public class PlayerDataUpdater {
 
         Player player = Bukkit.getServer().getPlayer(uuid);
 
-        if(player != null && player.isOnline()) 
+        if(player != null && player.isOnline()) {
+            updateNametag(player);
             player.setPlayerListName(
                 getFullProfilePrefix(player.getUniqueId()) +            
                 player.getName()
             );
+        }
+
+    }
+
+    private static void updateNametag(Player player) {
+
+       Team currentTeam = Bukkit.getServer().getScoreboardManager().getMainScoreboard().getEntryTeam(player.getName());
+
+       if(currentTeam != null)
+        currentTeam.removeEntry(player.getName());
+       
+       currentTeam = LuckPermsTags.getTeam(ShortLPCall.getPlayerMainGroup(player.getUniqueId()));
+       currentTeam.addEntry(player.getName());
 
     }
 
