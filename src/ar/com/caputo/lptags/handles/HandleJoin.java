@@ -23,9 +23,10 @@ public class HandleJoin extends Handler {
 
         Player player = evt.getPlayer();
 
+        PlayerDataUpdater.updatePrefix(player);
         player.setPlayerListHeader(lpt.getTablistHeader());
         player.setPlayerListFooter(lpt.getTablistFooter());
-        PlayerDataUpdater.updatePrefix(player);
+
 
     }
 

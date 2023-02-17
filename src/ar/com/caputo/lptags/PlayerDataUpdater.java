@@ -30,7 +30,7 @@ public class PlayerDataUpdater {
             updateNametag(player); 
             player.setPlayerListName(
                     getFullProfilePrefix(player.getUniqueId()) +            
-                    player.getName()
+                    player.getDisplayName()
             );
         }
     }
@@ -47,7 +47,7 @@ public class PlayerDataUpdater {
             updateNametag(player);
             player.setPlayerListName(
                 getFullProfilePrefix(player.getUniqueId()) +            
-                player.getName()
+                player.getDisplayName()
             );
         }
 
@@ -60,7 +60,7 @@ public class PlayerDataUpdater {
        if(currentTeam != null)
         currentTeam.removeEntry(player.getName());
        
-       currentTeam = LuckPermsTags.getTeam(ShortLPCall.getPlayerMainGroup(player.getUniqueId()));
+       currentTeam = TeamDataUpdater.getTeam(ShortLPCall.getPlayerMainGroup(player.getUniqueId()));
        currentTeam.addEntry(player.getName());
 
     }

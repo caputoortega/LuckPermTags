@@ -12,7 +12,6 @@ public class ShortLPCall {
      * @return unparsed prefix
      */
     public static final String getPlayerGroupPrefix(UUID uuid) {
-        
         String prefix = LuckPermsProvider.get().getUserManager().getUser(uuid).getCachedData().getMetaData().getPrefix();
         return prefix != null ? prefix : "";
     }
@@ -31,5 +30,10 @@ public class ShortLPCall {
     public static String getPlayerMainGroup(UUID uuid) {
         return LuckPermsProvider.get().getUserManager().getUser(uuid).getPrimaryGroup();
     }
-    
+
+    public static String getGroupPrefix(String groupName) {
+        String groupPrefix =  LuckPermsProvider.get().getGroupManager().getGroup(groupName).getCachedData().getMetaData().getPrefix();
+        return groupPrefix != null ? groupPrefix : "";
+    }
+
 }

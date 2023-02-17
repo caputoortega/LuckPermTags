@@ -3,6 +3,7 @@ package ar.com.caputo.lptags.handles;
 import org.bukkit.Bukkit;
 import ar.com.caputo.lptags.LuckPermsTags;
 import ar.com.caputo.lptags.PlayerDataUpdater;
+import ar.com.caputo.lptags.TeamDataUpdater;
 import net.luckperms.api.event.group.GroupDataRecalculateEvent;
 import net.luckperms.api.event.user.track.UserTrackEvent;
 
@@ -38,6 +39,7 @@ public class HandleGroupUpdate extends Handler {
      */
     public void groupMetaUpdate(GroupDataRecalculateEvent evt) {
 
+        TeamDataUpdater.updateTeams();
         String updatedGroupNameNode = "group."+evt.getGroup().getName();
 
         Bukkit.getServer().getOnlinePlayers().stream()
