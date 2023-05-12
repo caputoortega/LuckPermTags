@@ -20,10 +20,6 @@ public class PlayerDataUpdater {
                 ShortLPCall.getPlayerGroupUsernameColour(uuid));
     }
 
-    private static String getFullProfile(Player player) {
-        return getFullProfilePrefix(player.getUniqueId()).concat(player.getDisplayName());
-    }
-
     /**
      * Updates the profile name for the given <code>Player</code>
      * @param player
@@ -32,7 +28,10 @@ public class PlayerDataUpdater {
 
         if(player != null && player.isOnline()) {
             updateNametag(player); 
-            player.setPlayerListName(getFullProfile(player));
+            player.setPlayerListName(
+                    getFullProfilePrefix(player.getUniqueId()) +            
+                    player.getDisplayName()
+            );
         }
     }
 
@@ -43,7 +42,14 @@ public class PlayerDataUpdater {
     public static void updatePrefix(UUID uuid) {
 
         Player player = Bukkit.getServer().getPlayer(uuid);
-        updatePrefix(player);
+
+        if(player != null && player.isOnline()) {
+            updateNametag(player);
+            player.setPlayerListName(
+                getFullProfilePrefix(player.getUniqueId()) +            
+                player.getDisplayName()
+            );
+        }
 
     }
 
